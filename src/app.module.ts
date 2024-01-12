@@ -3,6 +3,8 @@ import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
+import { AuthModule } from './auth/auth.module'
+import { IsUniqueConstraint } from './auth/validations/IsUniqueConstraint'
 import { CommentModule } from './comment/comment.module'
 import { CommentEntity } from './comment/entities/comment.entity'
 import { PostEntity } from './post/entities/post.entity'
@@ -24,9 +26,10 @@ import { UserModule } from './user/user.module'
 		}),
 		UserModule,
 		PostModule,
-		CommentModule
+		CommentModule,
+		AuthModule
 	],
 	controllers: [AppController],
-	providers: [AppService]
+	providers: [AppService, IsUniqueConstraint]
 })
 export class AppModule {}
